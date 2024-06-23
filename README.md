@@ -1,19 +1,21 @@
-## HOW TO RUN THE PROJECT
+# HOW TO RUN THE PROJECT
 
-Install docker https://docs.docker.com/engine/install/
-Install docker-compose https://docs.docker.com/compose/install/
+Install docker: https://docs.docker.com/engine/install 
 
-## Go to Mentorly directory and run docker compose file
-RUN docker-compose docker-compose up --build 
+Install docker-compose: https://docs.docker.com/compose/install/
 
-# Run migrations
-docker exec -it api-mentorly npm run migrate
+## Go to Mentorly directory and run docker-compose.yml file
+    docker-compose up --build
 
-# Run seeds
-docker exec -it api-mentorly npm run seeds
+## Run migrations
+    docker exec -it api-mentorly npm run migrate
 
-# If you want to run it for development 
-# Remove from docker-compose file
+## Run seeds
+    docker exec -it api-mentorly npm run seeds
+
+## If you want to run it for development
+### Remove from docker-compose file
     image: surenagha/api-mentorly:1.0
-# Add to docker-compose file
+### Add to docker-compose file
     add build: ./api
+
