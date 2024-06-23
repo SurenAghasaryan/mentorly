@@ -1,0 +1,34 @@
+version: "3.1"
+
+services:
+  mentorly-db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: mentorly-dev-db
+      POSTGRES_PASSWORD: pswd
+      POSTGRES_USER: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+  
+  api-mentorly:
+    image: surenagha/api-mentorly:1.0
+    container_name: api-mentorly
+    # build: ./api
+    ports:
+      - "3000:3000"
+    depends_on:
+    - mentorly-db
+    environment:
+      NODE_ENV: development
+      DB_HOST: mentorly-db
+      DB_USER: postgres
+      DB_PASSWORD: pswd
+      DB_NAME: mentorly-dev-db
+      DB_DIALECT: postgres
+      DB_PORT: 5432
+
+volumes:
+  postgres-data:
